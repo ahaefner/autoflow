@@ -55,6 +55,7 @@ module.exports =
       if tabLengthInSpaces
         linePrefixTabExpanded = linePrefix.replace(/\t/g, tabLengthInSpaces)
       blockLines = block.split('\n')
+      blockLines[-1..] = blockLines[-1..] + '\n'
 
       if linePrefix
         escapedLinePrefix = _.escapeRegExp(linePrefix)
@@ -77,7 +78,7 @@ module.exports =
         currentLineLength += segment.length
       lines.push(linePrefix + currentLine.join(''))
 
-      paragraphs.push(lines.join('\n').replace(/\s+\n/g, '\n'))
+      paragraphs.push(lines.join('\n').replace(/\s+\n/g, '\n') + '\n')
 
     leadingVerticalSpace + paragraphs.join('\n\n') + trailingVerticalSpace
 
